@@ -22,7 +22,7 @@ logging.info("O programa foi iniciado.")
 
 
 
-def carregar_dados(caminho_arquivo):
+def carregar_dados(caminho_arquivo):  #tratamento de erro
     try:
         logging.info(f"Tentando carregar o arquivo: {caminho_arquivo}")
         if caminho_arquivo.endswith('.csv'):
@@ -62,7 +62,7 @@ def exibir_informacoes_gerais(dados):
     else:
         logging.warning("Coluna 'Parent_Education_Level' não encontrada nos dados.")
 
-def limpar_e_processar_dados(dados):
+def limpar_e_processar_dados(dados):  #tratamento de erro
     logging.info("Iniciando limpeza e processamento dos dados.")
     if 'Parent_Education_Level' in dados.columns:
         dados = dados.dropna(subset=['Parent_Education_Level']).copy()
@@ -81,7 +81,7 @@ def limpar_e_processar_dados(dados):
 
     return dados
 
-def estatisticas_coluna(dados):
+def estatisticas_coluna(dados):  #tratamento de erro
     while True:
         logging.info("Listando colunas disponíveis para estatísticas.")
         print("\nColunas disponíveis:")
@@ -174,7 +174,7 @@ def gerar_graficos(dados):
     else:
         logging.warning("Coluna 'Age' não encontrada para o gráfico de pizza.")
 
-def main():
+def main():  #tratamento de erro
     nome_usuario = input("Digite o seu nome: ").strip()  # Solicita o nome do usuário
     logging.info(f"Usuário {nome_usuario} iniciou o programa.")  # Registra o nome no log
 
