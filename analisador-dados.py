@@ -2,6 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import logging
 import os
+import re
+
+
+
 
 # Obtém o diretório do arquivo Python atual
 diretorio_atual = os.path.dirname(os.path.realpath(__file__))
@@ -174,9 +178,23 @@ def gerar_graficos(dados):
     else:
         logging.warning("Coluna 'Age' não encontrada para o gráfico de pizza.")
 
+def solicitar_nome_usuario():
+    while True:
+        nome = input("Digite seu nome: ").strip()
+
+        # Remove espaços e verifica se sobram 3 ou mais letras
+        nome_sem_espacos = re.sub(r"\s+", "", nome)
+
+        if len(nome_sem_espacos) < 3:
+            print("❌ O nome deve ter no mínimo 3 letras.")
+        elif not re.match(r"^[A-Za-zÀ-ÿ\s]+$", nome):
+            print("❌ O nome deve conter apenas letras (sem números ou símbolos).")
+        else:
+            return nome
+
 def main():  #tratamento de erro
-    nome_usuario = input("Digite o seu nome: ").strip()  # Solicita o nome do usuário
-    logging.info(f"Usuário {nome_usuario} iniciou o programa.")  # Registra o nome no log
+    nome_usuario = solicitar_nome_usuario()  # ✅ Solicitar nome
+    logging.info(f"Usuário {nome_usuario} iniciou o programa.")  # ✅ Depois registra no log
 
     while True:
         caminho = input("Digite o caminho do arquivo CSV ou JSON (ou digite 'sair' para encerrar): ").strip()
