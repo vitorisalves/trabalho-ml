@@ -1,13 +1,24 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import logging
+import os
 
-# Configuração básica do logging
+# Obtém o diretório do arquivo Python atual
+diretorio_atual = os.path.dirname(os.path.realpath(__file__))
+
+# Configura o caminho do arquivo de log na mesma pasta do script
+caminho_log = os.path.join(diretorio_atual, 'logfile.log')
+
+# Configuração do log
 logging.basicConfig(
-    filename='dados_processados.log',  # Nome do arquivo de log
-    level=logging.INFO,  # O nível de log (INFO, DEBUG, ERROR, etc.)
-    format='%(asctime)s - %(levelname)s - %(message)s'  # Formato das mensagens
+    filename=caminho_log,
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
 )
+
+# Teste de log
+logging.info("O programa foi iniciado.")
+
 
 
 
